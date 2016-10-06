@@ -41,7 +41,7 @@ class CKIPClient:
 
     def segment(self, text: str, pos: bool = True) -> list:
         """
-        Segment the text in to words.
+        Segment the text into words.
 
         :param text: Text to be segmented.
         :type text: str

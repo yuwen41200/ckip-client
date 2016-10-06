@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: package ckipclient</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="heading">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ckipclient</strong></big></big></font></td><td align="right" valign="bottom"></td></tr></tbody></table>
+<p></p>
+<p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#ee77aa">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dd>
+<dl>
+<dt><font><p>&nbsp;</p>
+</font></dt></dl>
+</dd>
+</dl>
+<p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#ffc8d8">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CKIPClient">class <strong>CKIPClient</strong></a>()</font></td></tr>
+<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan="2"><tt>A&nbsp;Python&nbsp;client&nbsp;for&nbsp;the&nbsp;Chinese&nbsp;Word&nbsp;Segmentation&nbsp;System&nbsp;(see&nbsp;ckipsvr.iis.sinica.edu.tw)<br>
+provided&nbsp;by&nbsp;Academia&nbsp;Sinica&nbsp;Chinese&nbsp;Knowledge&nbsp;and&nbsp;Information&nbsp;Processing&nbsp;(CKIP)&nbsp;Group.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="CKIPClient-__init__"><strong>__init__</strong></a>(self, ip:str, port:int, usr:str, pwd:str, safe:bool=True)</dt><dd><tt>Initialize&nbsp;the&nbsp;client.<br>
+&nbsp;<br>
+:param&nbsp;ip:&nbsp;CKIP&nbsp;server&nbsp;IP.<br>
+:type&nbsp;ip:&nbsp;str<br>
+:param&nbsp;port:&nbsp;CKIP&nbsp;server&nbsp;port.<br>
+:type&nbsp;port:&nbsp;int<br>
+:param&nbsp;usr:&nbsp;CKIP&nbsp;server&nbsp;username.<br>
+:type&nbsp;usr:&nbsp;str<br>
+:param&nbsp;pwd:&nbsp;CKIP&nbsp;server&nbsp;password.<br>
+:type&nbsp;pwd:&nbsp;str<br>
+:param&nbsp;safe:&nbsp;Enable&nbsp;safe&nbsp;mode&nbsp;or&nbsp;not.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Safe&nbsp;mode&nbsp;prevent&nbsp;you&nbsp;from&nbsp;sending&nbsp;too&nbsp;many&nbsp;requests&nbsp;in&nbsp;a&nbsp;short&nbsp;time.<br>
+:type&nbsp;safe:&nbsp;bool</tt></dd></dl>
+<dl><dt><a name="CKIPClient-segment"><strong>segment</strong></a>(self, text:str, pos:bool=True) -&gt; list</dt><dd><tt>Segment&nbsp;the&nbsp;text&nbsp;into&nbsp;words.<br>
+&nbsp;<br>
+:param&nbsp;text:&nbsp;Text&nbsp;to&nbsp;be&nbsp;segmented.<br>
+:type&nbsp;text:&nbsp;str<br>
+:param&nbsp;pos:&nbsp;Return&nbsp;part&nbsp;of&nbsp;speech&nbsp;or&nbsp;not.<br>
+:type&nbsp;pos:&nbsp;bool<br>
+:return:&nbsp;List&nbsp;of&nbsp;sentences,&nbsp;each&nbsp;sentence&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;words.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;word&nbsp;is&nbsp;a&nbsp;tuple&nbsp;of&nbsp;(word,&nbsp;part&nbsp;of&nbsp;speech)&nbsp;if&nbsp;pos&nbsp;is&nbsp;true.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;it&nbsp;contains&nbsp;just&nbsp;the&nbsp;word.<br>
+:rtype:&nbsp;list</tt></dd></dl>
+</td></tr></tbody></table></p></td></tr></tbody></table>
+</p></body></html>

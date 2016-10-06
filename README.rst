@@ -1,12 +1,23 @@
 CKIP Client
 -----------
 
-A Python client for the Chinese Word Segmentation System (see ckipsvr.iis.sinica.edu.tw) provided by Academia Sinica Chinese Knowledge and Information Processing (CKIP) Group.
+A Python client for the Chinese Word Segmentation System (see `ckipsvr.iis.sinica.edu.tw <http://ckipsvr.iis.sinica.edu.tw/>`_) provided by Academia Sinica Chinese Knowledge and Information Processing (CKIP) Group.
+
+Installation
+------------
+
+Simply run tho following command:
+
+.. code-block:: sh
+
+    pip install ckip-client
+
+If ``pip`` is not available, you can also `download it manually from PyPI <https://pypi.python.org/pypi/ckip-client>`_.
 
 Example
 -------
 
-In order to use the Chinese Word Segmentation System, you should register an account on ckipsvr.iis.sinica.edu.tw.
+In order to use the Chinese Word Segmentation System, you should register an account on `ckipsvr.iis.sinica.edu.tw <http://ckipsvr.iis.sinica.edu.tw/>`_.
 You will get the server's IP address and port number when you finish the registration process.
 
 Replace ``CKIP_*`` with your real arguments.
@@ -32,3 +43,5 @@ The code above will output:
     今年 N／共有 Vt／五十五 DET／組 M／獨立 Vi／樂團 N／參與 Vt／演出 N／， COMMACATEGORY
     包含 Vt／曾 ADV／獲得 Vt／金曲獎 N／的 T／「 PARENTHESISCATEGORY／舒米恩 N／」 PARENTHESISCATEGORY／、 PAUSECATEGORY／「 PARENTHESISCATEGORY／滅火器 N／」 PARENTHESISCATEGORY／等 POST／， COMMACATEGORY
     陣容 N／十分 ADV／堅強 Vi／。 PERIODCATEGORY
+
+For more details, please refer to `the documentation <http://pythonhosted.org/ckip-client/>`_.

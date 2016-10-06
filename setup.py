@@ -20,10 +20,12 @@ setup(
     ],
     keywords='chinese word segmentation ckip client nlp linguistics',
     url='https://github.com/yuwen41200/ckip-client',
+    download_url='https://pypi.python.org/pypi/ckip-client',
     author='Yu-wen Pwu',
     author_email='ywpu@cs.nctu.edu.tw',
     license='MIT',
     packages=['ckipclient'],
+    platforms=['any'],
     include_package_data=True,
     zip_safe=False
 )
