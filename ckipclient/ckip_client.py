@@ -3,7 +3,6 @@
 
 import socket
 import string
-import sys
 import time
 from xml.etree import ElementTree
 from xml.sax import saxutils
@@ -76,18 +75,25 @@ class CKIPClient:
             text=saxutils.escape(text)
         )
 
+        response_xml = b''
         proto = socket.getprotobyname('tcp')
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto) as sock:
             sock.connect((self.ip, self.port))
-            sock.sendall(request_xml.encode(encoding='big5'))
-            response_xml = sock.recv(sys.getsizeof(request_xml) * 3)
+            sock.sendall(request_xml.encode(encoding='big5', errors='replace'))
+            ending_bytes = '</wordsegmentation>'.encode(encoding='big5')
+            while ending_bytes not in response_xml:
+                response_xml += sock.recv(4096)
             sock.shutdown(socket.SHUT_RDWR)
             sock.close()
+        response_xml = response_xml.decode(encoding='big5')
 
-        root = ElementTree.fromstring(response_xml.decode(encoding='big5'))
+        try:
+            root = ElementTree.fromstring(response_xml)
+        except ElementTree.ParseError:
+            raise ElementTree.ParseError(response_xml)
+
         status_code = root.find('processstatus').get('code')
         status_msg = root.find('processstatus').text
-
         if status_code != '0':
             raise ConnectionError((status_code, status_msg))
 
