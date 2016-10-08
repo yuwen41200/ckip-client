@@ -43,6 +43,7 @@ class CKIPClient:
         Segment the text into words.
 
         :param text: Text to be segmented.
+                     Characters that cannot be encoded in big5 will be replaced by '?'.
         :type text: str
         :param pos: Return part of speech or not.
         :type pos: bool
