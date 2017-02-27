@@ -58,7 +58,7 @@ class CKIPClient:
 
         if self.safe:
             self.counter += 1
-            time.sleep(self.counter ** 0.5)
+            time.sleep(min(self.counter ** 0.5, 10))
 
         request_xml = (
             '<?xml version="1.0" ?>'
