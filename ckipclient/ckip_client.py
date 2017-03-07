@@ -79,6 +79,7 @@ class CKIPClient:
         response_xml = b''
         proto = socket.getprotobyname('tcp')
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto) as sock:
+            sock.settimeout(600)
             sock.connect((self.ip, self.port))
             sock.sendall(request_xml.encode(encoding='big5', errors='replace'))
             ending_bytes = '</wordsegmentation>'.encode(encoding='big5')
@@ -86,7 +87,7 @@ class CKIPClient:
                 response_xml += sock.recv(4096)
             sock.shutdown(socket.SHUT_RDWR)
             sock.close()
-        response_xml = response_xml.decode(encoding='big5')
+        response_xml = response_xml.decode(encoding='big5', errors='replace')
 
         try:
             root = ElementTree.fromstring(response_xml)
