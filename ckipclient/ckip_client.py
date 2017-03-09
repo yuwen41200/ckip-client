@@ -6,6 +6,7 @@ import string
 import time
 from xml.etree import ElementTree
 from xml.sax import saxutils
+from unicodedata import category
 
 
 class CKIPClient:
@@ -88,6 +89,11 @@ class CKIPClient:
             sock.shutdown(socket.SHUT_RDWR)
             sock.close()
         response_xml = response_xml.decode(encoding='big5', errors='replace')
+
+        response_xml_sanitized = ''
+        for char in response_xml.partition('</wordsegmentation>')[0]:
+            response_xml_sanitized += '\ufffd' if category(char).startswith('C') else char
+        response_xml = response_xml_sanitized + '</wordsegmentation>'
 
         try:
             root = ElementTree.fromstring(response_xml)
