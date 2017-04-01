@@ -7,7 +7,7 @@ def readme():
 
 setup(
     name='ckip-client',
-    version='0.1.3',
+    version='0.1.4',
     description='A Python Client for CKIP Chinese Word Segmentation System',
     long_description=readme(),
     classifiers=[
