@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 
 # noinspection PyUnresolvedReferences
-from ckip_client import CKIPClient
+from ckipclient import CKIPClient
 
-CKIP_IP = '140.109.1.1'
-CKIP_PORT = 1000
-CKIP_USERNAME = 'foo'
-CKIP_PASSWORD = 'bar'
+CKIP_IP = '140.109.19.104'
+CKIP_PORT = 1501
+CKIP_USERNAME = '<username>'
+CKIP_PASSWORD = '<password>'
 
 if __name__ == '__main__':
 

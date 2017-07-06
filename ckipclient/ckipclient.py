@@ -37,9 +37,20 @@ class CKIPClient:
         self.usr = usr
         self.pwd = pwd
         self.safe = safe
-        self.counter = 0
 
-    def segment(self, text: str, pos: bool = True) -> list:
+    def segment(self, text: str, pos: bool = True):
+        status = False
+        results = None
+        while not status:
+            try:
+                results = self._segment(text, pos)
+                status = True
+            except ConnectionError:
+                print("Connection error occured! Wait for 10 seconds.")
+                time.sleep(10)
+        return results
+
+    def _segment(self, text: str, pos: bool = True) -> list:
         """
         Segment the text into words.
 
@@ -58,8 +69,7 @@ class CKIPClient:
             return []
 
         if self.safe:
-            self.counter += 1
-            time.sleep(min(self.counter ** 0.5, 10))
+            time.sleep(1)
 
         request_xml = (
             '<?xml version="1.0" ?>'
