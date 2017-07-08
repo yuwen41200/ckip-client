@@ -46,4 +46,4 @@ The code above will output:
     包含 Vt／曾 ADV／獲得 Vt／金曲獎 N／的 T／「 PARENTHESISCATEGORY／舒米恩 N／」 PARENTHESISCATEGORY／、 PAUSECATEGORY／「 PARENTHESISCATEGORY／滅火器 N／」 PARENTHESISCATEGORY／等 POST／， COMMACATEGORY
     陣容 N／十分 ADV／堅強 Vi／。 PERIODCATEGORY
 
-For more details, please refer to `the documentation <http://pythonhosted.org/ckip-client/>`_.
+For more details, please refer to `the documentation <http://ywpu.me/ckip-client/>`_.
