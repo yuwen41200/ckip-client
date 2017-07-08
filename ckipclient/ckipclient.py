@@ -58,8 +58,8 @@ class CKIPClient:
         counter = 0
         while counter <= retry:
             try:
-                results = self.segment(text, pos)
                 counter += 1
+                results = self.segment(text, pos)
             except ElementTree.ParseError as err:
                 print('ElementTree.ParseError:', err, flush=True)
                 print('wait 10 seconds...', flush=True)

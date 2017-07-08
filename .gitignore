@@ -3,3 +3,4 @@
 /ckip_client.egg-info/
 /dist/
 *.pyc
+.DS_Store

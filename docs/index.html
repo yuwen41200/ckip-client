@@ -1,36 +1,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html><head><title>Python: package ckipclient</title>
+<html><head><title>Python: module ckipclient</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head><body bgcolor="#f0f0f8">
-<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="heading">
-<tbody><tr bgcolor="#7799ee">
-<td valign="bottom">&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ckipclient</strong></big></big></font></td><td align="right" valign="bottom"></td></tr></tbody></table>
-<p></p>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ckipclient</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><br></font></td></tr></table>
+    <p><tt></tt></p>
 <p>
-<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
-<tbody><tr bgcolor="#ee77aa">
-<td colspan="3" valign="bottom">&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>    
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
 <tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl>
-<dd>
+<dt><font face="helvetica, arial">&nbsp;
+</font></dt><dd>
 <dl>
-<dt><font><p>&nbsp;</p>
+<dt><font face="helvetica, arial">
 </font></dt></dl>
 </dd>
 </dl>
-<p>
-<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
-<tbody><tr bgcolor="#ffc8d8">
-<td colspan="3" valign="bottom">&nbsp;<br>
-<font color="#000000" face="helvetica, arial"><a name="CKIPClient">class <strong>CKIPClient</strong></a>()</font></td></tr>
-<tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan="2"><tt>A&nbsp;Python&nbsp;client&nbsp;for&nbsp;the&nbsp;Chinese&nbsp;Word&nbsp;Segmentation&nbsp;System&nbsp;(see&nbsp;ckipsvr.iis.sinica.edu.tw)<br>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CKIPClient">class <strong>CKIPClient</strong></a>(builtins.object)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;Python&nbsp;client&nbsp;for&nbsp;the&nbsp;Chinese&nbsp;Word&nbsp;Segmentation&nbsp;System&nbsp;(see&nbsp;ckipsvr.iis.sinica.edu.tw)<br>
 provided&nbsp;by&nbsp;Academia&nbsp;Sinica&nbsp;Chinese&nbsp;Knowledge&nbsp;and&nbsp;Information&nbsp;Processing&nbsp;(CKIP)&nbsp;Group.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="CKIPClient-__init__"><strong>__init__</strong></a>(self, ip:str, port:int, usr:str, pwd:str, safe:bool=True)</dt><dd><tt>Initialize&nbsp;the&nbsp;client.<br>
+<dl><dt><a name="CKIPClient-__init__"><strong>__init__</strong></a>(self, ip:str, port:int, usr:str, pwd:str, wait:int=0)</dt><dd><tt>Initialize&nbsp;the&nbsp;client.<br>
 &nbsp;<br>
 :param&nbsp;ip:&nbsp;CKIP&nbsp;server&nbsp;IP.<br>
 :type&nbsp;ip:&nbsp;str<br>
@@ -40,13 +47,28 @@ provided&nbsp;by&nbsp;Academia&nbsp;Sinica&nbsp;Chinese&nbsp;Knowledge&nbsp;and&
 :type&nbsp;usr:&nbsp;str<br>
 :param&nbsp;pwd:&nbsp;CKIP&nbsp;server&nbsp;password.<br>
 :type&nbsp;pwd:&nbsp;str<br>
-:param&nbsp;safe:&nbsp;Enable&nbsp;safe&nbsp;mode&nbsp;or&nbsp;not.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Safe&nbsp;mode&nbsp;prevent&nbsp;you&nbsp;from&nbsp;sending&nbsp;too&nbsp;many&nbsp;requests&nbsp;in&nbsp;a&nbsp;short&nbsp;time.<br>
-:type&nbsp;safe:&nbsp;bool</tt></dd></dl>
+:param&nbsp;wait:&nbsp;Number&nbsp;of&nbsp;seconds&nbsp;to&nbsp;wait&nbsp;before&nbsp;segmenting.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;to&nbsp;prevent&nbsp;overwhelming&nbsp;requests.<br>
+:type&nbsp;wait:&nbsp;int</tt></dd></dl>
+
+<dl><dt><a name="CKIPClient-safe_segment"><strong>safe_segment</strong></a>(self, text:str, pos:bool=True, retry:int=5) -&gt; list</dt><dd><tt>Segment&nbsp;the&nbsp;text&nbsp;into&nbsp;words,&nbsp;retry&nbsp;if&nbsp;an&nbsp;error&nbsp;occurred.<br>
+&nbsp;<br>
+:param&nbsp;text:&nbsp;Text&nbsp;to&nbsp;be&nbsp;segmented.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Characters&nbsp;that&nbsp;cannot&nbsp;be&nbsp;encoded&nbsp;in&nbsp;big5&nbsp;will&nbsp;be&nbsp;replaced&nbsp;by&nbsp;'?'.<br>
+:type&nbsp;text:&nbsp;str<br>
+:param&nbsp;pos:&nbsp;Return&nbsp;part&nbsp;of&nbsp;speech&nbsp;or&nbsp;not.<br>
+:type&nbsp;pos:&nbsp;bool<br>
+:param&nbsp;retry:&nbsp;Maximum&nbsp;number&nbsp;of&nbsp;retries.<br>
+:type&nbsp;retry:&nbsp;int<br>
+:return:&nbsp;List&nbsp;of&nbsp;sentences,&nbsp;each&nbsp;sentence&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;words.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;word&nbsp;is&nbsp;a&nbsp;tuple&nbsp;of&nbsp;(word,&nbsp;part&nbsp;of&nbsp;speech)&nbsp;if&nbsp;pos&nbsp;is&nbsp;true.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;it&nbsp;contains&nbsp;just&nbsp;the&nbsp;word.<br>
+:rtype:&nbsp;list</tt></dd></dl>
+
 <dl><dt><a name="CKIPClient-segment"><strong>segment</strong></a>(self, text:str, pos:bool=True) -&gt; list</dt><dd><tt>Segment&nbsp;the&nbsp;text&nbsp;into&nbsp;words.<br>
 &nbsp;<br>
 :param&nbsp;text:&nbsp;Text&nbsp;to&nbsp;be&nbsp;segmented.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Characters&nbsp;that&nbsp;cannot&nbsp;be&nbsp;encoded&nbsp;in&nbsp;big5&nbsp;will&nbsp;be&nbsp;replaced&nbsp;by&nbsp;&apos;?&apos;.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Characters&nbsp;that&nbsp;cannot&nbsp;be&nbsp;encoded&nbsp;in&nbsp;big5&nbsp;will&nbsp;be&nbsp;replaced&nbsp;by&nbsp;'?'.<br>
 :type&nbsp;text:&nbsp;str<br>
 :param&nbsp;pos:&nbsp;Return&nbsp;part&nbsp;of&nbsp;speech&nbsp;or&nbsp;not.<br>
 :type&nbsp;pos:&nbsp;bool<br>
@@ -54,5 +76,6 @@ provided&nbsp;by&nbsp;Academia&nbsp;Sinica&nbsp;Chinese&nbsp;Knowledge&nbsp;and&
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;word&nbsp;is&nbsp;a&nbsp;tuple&nbsp;of&nbsp;(word,&nbsp;part&nbsp;of&nbsp;speech)&nbsp;if&nbsp;pos&nbsp;is&nbsp;true.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;it&nbsp;contains&nbsp;just&nbsp;the&nbsp;word.<br>
 :rtype:&nbsp;list</tt></dd></dl>
-</td></tr></tbody></table></p></td></tr></tbody></table>
-</p></body></html>
+
+</td></tr></table></td></tr></table><p>
+</body></html>
