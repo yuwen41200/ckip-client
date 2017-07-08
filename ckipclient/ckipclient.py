@@ -27,9 +27,9 @@ class CKIPClient:
         :type usr: str
         :param pwd: CKIP server password.
         :type pwd: str
-        :param wait: seconds to wait before segment,
-                    used to prevent overwhelming requests
-        :type safe: bool
+        :param wait: Number of seconds to wait before segmenting.
+                     Used to prevent overwhelming requests.
+        :type wait: int
         """
 
         self.ip = ip
@@ -40,28 +40,42 @@ class CKIPClient:
 
     def safe_segment(self, text: str, pos: bool = True, retry: int = 5) -> list:
         """
-        Retry if error occured
+        Segment the text into words, retry if an error occurred.
 
         :param text: Text to be segmented.
                      Characters that cannot be encoded in big5 will be replaced by '?'.
         :type text: str
         :param pos: Return part of speech or not.
         :type pos: bool
+        :param retry: Maximum number of retries.
+        :type retry: int
         :return: List of sentences, each sentence is a list of words.
                  Each word is a tuple of (word, part of speech) if pos is true.
                  Otherwise, it contains just the word.
         :rtype: list
         """
-        results = None
-        retry_count = 0
-        while results is None and retry_count < retry:
+
+        counter = 0
+        while counter <= retry:
             try:
                 results = self.segment(text, pos)
-            except ConnectionError:
-                print("Connection error occured! Wait for 10 seconds.")
-                time.sleep(1)
-            retry_count += 1
-        return results if results else []
+                counter += 1
+            except ElementTree.ParseError as err:
+                print('ElementTree.ParseError:', err, flush=True)
+                print('wait 10 seconds...', flush=True)
+                time.sleep(10)
+            except ConnectionError as err:
+                print('ConnectionError:', err, flush=True)
+                print('wait 10 seconds...', flush=True)
+                time.sleep(10)
+            except OSError as err:
+                print('OSError:', err, flush=True)
+                print('wait 10 seconds...', flush=True)
+                time.sleep(10)
+            else:
+                return results
+        print('failed after', retry, 'retries', flush=True)
+        return []
 
     def segment(self, text: str, pos: bool = True) -> list:
         """

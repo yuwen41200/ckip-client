@@ -14,6 +14,8 @@ Simply run tho following command:
 
 If ``pip`` is not available, you can also `download it manually from PyPI <https://pypi.python.org/pypi/ckip-client>`_.
 
+Note: Currently only Python 3+ is supported.
+
 Example
 -------
 
