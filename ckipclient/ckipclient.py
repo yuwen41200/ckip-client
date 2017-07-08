@@ -15,7 +15,7 @@ class CKIPClient:
     provided by Academia Sinica Chinese Knowledge and Information Processing (CKIP) Group.
     """
 
-    def __init__(self, ip: str, port: int, usr: str, pwd: str, safe: bool = True):
+    def __init__(self, ip: str, port: int, usr: str, pwd: str, wait: int = 0):
         """
         Initialize the client.
 
@@ -27,8 +27,8 @@ class CKIPClient:
         :type usr: str
         :param pwd: CKIP server password.
         :type pwd: str
-        :param safe: Enable safe mode or not.
-                     Safe mode prevent you from sending too many requests in a short time.
+        :param wait: seconds to wait before segment,
+                    used to prevent overwhelming requests
         :type safe: bool
         """
 
@@ -36,8 +36,32 @@ class CKIPClient:
         self.port = port
         self.usr = usr
         self.pwd = pwd
-        self.safe = safe
-        self.counter = 0
+        self.wait = wait
+
+    def safe_segment(self, text: str, pos: bool = True, retry: int = 5) -> list:
+        """
+        Retry if error occured
+
+        :param text: Text to be segmented.
+                     Characters that cannot be encoded in big5 will be replaced by '?'.
+        :type text: str
+        :param pos: Return part of speech or not.
+        :type pos: bool
+        :return: List of sentences, each sentence is a list of words.
+                 Each word is a tuple of (word, part of speech) if pos is true.
+                 Otherwise, it contains just the word.
+        :rtype: list
+        """
+        results = None
+        retry_count = 0
+        while results is None and retry_count < retry:
+            try:
+                results = self.segment(text, pos)
+            except ConnectionError:
+                print("Connection error occured! Wait for 10 seconds.")
+                time.sleep(1)
+            retry_count += 1
+        return results if results else []
 
     def segment(self, text: str, pos: bool = True) -> list:
         """
@@ -57,9 +81,8 @@ class CKIPClient:
         if not text:
             return []
 
-        if self.safe:
-            self.counter += 1
-            time.sleep(min(self.counter ** 0.5, 10))
+        if self.wait > 0:
+            time.sleep(self.wait)
 
         request_xml = (
             '<?xml version="1.0" ?>'
